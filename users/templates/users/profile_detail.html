@@ -1,0 +1,53 @@
+{% extends 'posts/base.html' %}
+{% block content %}
+{% block extra_css %}
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+.butt{
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+</style>
+{% endblock %}
+</head>
+<body>
+
+<h2 style="text-align:center">User Profile Card</h2>
+
+<div class="card">
+  <img src="{{ profile.pic.url }}" alt="John" style="width:100%">
+  <h1>{{ profile.user }}</h1>
+  <p class="title">{{ profile.gender }}</p>
+  <p>{{ profile.age }} years old</p>
+  <div style="margin: 24px 0;">
+    <a href="#"><i class="fa fa-dribbble"></i></a> 
+    <a href="#"><i class="fa fa-twitter"></i></a>  
+    <a href="#"><i class="fa fa-linkedin"></i></a>  
+    <a href="#"><i class="fa fa-facebook"></i></a> 
+  </div>
+  <p><a href="{% url 'profile-update' profile.pk %}" class="btn butt btn-success">Update</a></p>
+</div>
+{% endblock %}

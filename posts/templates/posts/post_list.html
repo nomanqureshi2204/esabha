@@ -1,0 +1,30 @@
+{% extends 'posts/base.html' %}
+
+
+
+{% block content %}
+
+{% for post in post_list %}
+ 
+  <div class="row"> 
+    <div class="col-2 ">
+    </div>
+    <div class="col-8" style="width:100%;margin-bottom: 5%;border:1px solid black;padding: 1%;">
+      <img src="{{ post.uploaded_by.pic.url }}" alt="pic" style="height: 50px;width: 50px;">
+        <a href="{% url 'profile-detail' post.uploaded_by.pk %}">{{ post.uploaded_by }}</a>
+        <p>{{ post.cr_date }}</p>
+        <a href=""><h4>{{ post.subject }}</h4></a>
+        <p>{{ post.msg }}</p>
+
+        {% if post.liked %}
+        <a href="{% url 'dislike' post.id %}">UnLike</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">Comment</a>
+        {% else %}
+        <a href="{% url 'like' post.id %}">Like</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'create-comment' post.id %}">Comment</a>
+        {% endif %}
+    </div>
+  </div>
+
+{% endfor %}
+
+{% endblock %}
+ 

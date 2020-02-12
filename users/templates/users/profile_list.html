@@ -1,0 +1,29 @@
+{% extends 'posts/base.html' %}
+
+{% block content %}
+
+{% for profile in profile_list %}
+ 
+  <div class="row"> 
+    <div class="col-2 ">
+    </div>
+    <div class="col-8" style="width:100%;margin-bottom: 5%;border:1px solid black;padding: 1%;">
+      <img src="{{ profile.pic.url }}" alt="pic" style="height: 50px;width: 50px;">
+        <p>{{ profile.gender }} </p>
+    
+        <a href="{% url 'profile-detail' profile.pk %}"><h4>{{ profile.user }}</h4></a>
+       
+      {% if profile.followed %}
+      <a href="{% url 'unfollow' profile.id %}">Unfollow</a>
+      {% else %}
+      <a href="{% url 'follow' profile.id %}">Follow</a>
+     {% endif %}
+
+    </div>
+  </div>
+
+{% endfor %}
+
+{% endblock %}
+
+

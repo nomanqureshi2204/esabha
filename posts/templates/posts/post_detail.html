@@ -1,0 +1,20 @@
+{% extends 'posts/base.html' %}
+{% block content %}
+
+<h1>Detail Page</h1>
+<div class="content-section">
+	<div class="card">
+    <img src="{{post.pic.url}}" class="card-img img-fluid rounded-circle imgsize text-center">
+        <div class="card-body">
+          	<h2 class="card-title">{{post.subject}}</h2>
+            <p class="card-text">{{post.msg}}</p>
+           	<h2 class="card-title">{{ post.created_by }}</h2> 
+       	</div>
+       	{% if post.uploaded_by.user == user  %}
+          <a href="{% url 'post-update' post.id %}" class="btn btn-info">Update</a><br>
+          <a href="{% url 'post-delete' post.id %}" class="btn btn-danger">Delete</a>
+         {% endif %}
+</div>
+
+             
+{% endblock %}
